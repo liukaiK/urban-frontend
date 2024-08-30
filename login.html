@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<div id="app">
+    <form method="post">
+        <div>
+            账号：<input type="text" v-model.trim="loginForm.username">
+        </div>
+        <div>
+            密码：<input type="password" v-model.trim="loginForm.password" autocomplete="off">
+        </div>
+        <button type="submit" v-on:click="login">登录</button>
+        <p>{{loginForm}}</p>
+    </form>
+</div>
+</body>
+
+<script src="./js/vue.global.js"></script>
+<script src="./js/axios.min.js"></script>
+<script>
+    let opt = {
+        data: function () {
+            return {
+                loginForm: {
+                    username: '',
+                    password: '',
+                }
+            }
+        },
+        methods: {
+            login: function (event) {
+                event.preventDefault();
+                console.log(JSON.stringify(this.loginForm));
+
+                // axios.post('/user', {
+                //     username: this.username,
+                //     password: this.password
+                // }).then(function (response) {
+                //     console.log(response);
+                // }).catch(function (error) {
+                //     console.log(error);
+                // });
+            },
+        }
+    };
+    Vue.createApp(opt).mount('#app');
+</script>
+</html>
